@@ -7,7 +7,7 @@ export const Experience = () => {
 			<ambientLight intensity={0.5} />
 			<directionalLight position={[-10, 10, 0]} intensity={0.4} />
 
-			<OrbitControls />
+			{/* <OrbitControls /> */}
 
 			<RigidBody position={[0, 5, 0]} colliders={"ball"}>
 				<Sphere>
@@ -22,8 +22,8 @@ export const Experience = () => {
 			</RigidBody>
 
 			<RigidBody type="fixed">
-				<Box position={[0, 0, 0]} args={[10, 1, 10]}>
-					<meshStandardMaterial color="springgreen" />
+				<Box position={[0, 0, 0]} args={[50, 1, 50]}>
+					<meshStandardMaterial color="lightblue" />
 				</Box>
 			</RigidBody>
 		</>

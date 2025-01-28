@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cottonwood Apartments
+* source:	https://sketchfab.com/3d-models/cottonwood-apartments-9951eba83c3a4342827c5f3310b735c2
+* author:	Apartments Near Me (https://sketchfab.com/apartmentsnearme)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cottonwood Apartments" (https://sketchfab.com/3d-models/cottonwood-apartments-9951eba83c3a4342827c5f3310b735c2) by Apartments Near Me (https://sketchfab.com/apartmentsnearme) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
