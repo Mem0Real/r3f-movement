@@ -63,7 +63,6 @@ function App() {
 								autoBalance={false}
 								// debug
 								// position={[-0.5, 1, 0]}
-								// rotation={[0, -Math.PI / 2, 0]}
 							/>
 						</KeyboardControls>
 					</Physics>
