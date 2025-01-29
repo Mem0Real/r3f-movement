@@ -31,7 +31,7 @@ function App() {
 			>
 				<color attach="background" args={["#ececec"]} />
 				<Suspense fallback={null}>
-					<Physics>
+					<Physics debug>
 						{/* <Experience /> */}
 						{/* <Land /> */}
 						<Apartment />
@@ -62,7 +62,7 @@ function App() {
 								turnSpeed={100} // give it big turning speed to prevent turning wait time
 								autoBalance={false}
 								// debug
-								// position={[-0.5, 1, 0]}
+								position={[-1.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
 					</Physics>
