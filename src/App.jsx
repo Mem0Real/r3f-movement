@@ -3,7 +3,7 @@ import { Experience } from "./components/Experience";
 import { Land } from "./components/Land";
 import { Physics } from "@react-three/rapier";
 import { Suspense } from "react";
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, Loader } from "@react-three/drei";
 
 import Ecctrl from "ecctrl";
 import Tutorial from "./components/Tutorial";
@@ -48,6 +48,7 @@ function App() {
 								autoBalance={false}
 								// debug
 								// position={[-1.5, 1, 0.05]}
+								position={[-0.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
 					</Physics>

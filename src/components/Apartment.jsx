@@ -8,8 +8,8 @@ export default function Apartment() {
 			<ambientLight intensity={0.5} />
 			<directionalLight position={[-10, 10, 0]} intensity={0.4} />
 			<RigidBody type="fixed" colliders="trimesh">
-				{/* <Room /> */}
-				<Room2 />
+				<Room />
+				{/* <Room2 /> */}
 			</RigidBody>
 		</>
 	);
