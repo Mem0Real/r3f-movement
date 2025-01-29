@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.3 ./public/assets/models/apart2/apartment.glb
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Room2(props) {
+export default function Room2(props) {
 	const { nodes, materials } = useGLTF("/assets/models/apart2/apartment.glb");
 	return (
 		<group {...props} dispose={null}>

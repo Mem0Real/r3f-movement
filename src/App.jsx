@@ -1,9 +1,10 @@
 import { Canvas } from "@react-three/fiber";
-import { Experience } from "./components/Experience";
-import { Land } from "./components/Land";
 import { Physics } from "@react-three/rapier";
 import { Suspense } from "react";
 import { KeyboardControls, Loader } from "@react-three/drei";
+
+import { Experience } from "./components/Experience";
+import { Land } from "./components/Land";
 
 import Ecctrl from "ecctrl";
 import Tutorial from "./components/Tutorial";
@@ -32,9 +33,6 @@ function App() {
 				<color attach="background" args={["#ececec"]} />
 				<Suspense fallback={null}>
 					<Physics>
-						{/* <Experience /> */}
-						{/* <Land /> */}
-						<Apartment />
 						<KeyboardControls map={keyboardMap}>
 							<Ecctrl
 								camCollision={false} // disable camera collision detect (useless in FP mode)
@@ -51,10 +49,15 @@ function App() {
 								// position={[-0.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
+
+						{/* <Experience /> */}
+						{/* <Land /> */}
+						<Apartment />
 					</Physics>
 				</Suspense>
 			</Canvas>
 			<Tutorial />
+			<Loader />
 		</>
 	);
 }
