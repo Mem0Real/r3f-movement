@@ -31,26 +31,11 @@ function App() {
 			>
 				<color attach="background" args={["#ececec"]} />
 				<Suspense fallback={null}>
-					<Physics debug>
+					<Physics>
 						{/* <Experience /> */}
 						{/* <Land /> */}
 						<Apartment />
 						<KeyboardControls map={keyboardMap}>
-							{/* <Ecctrl
-								camCollision={false} // disable camera collision detect (useless in FP mode)
-								camInitDis={-0.01} // camera intial position
-								camMinDis={-0.01} // camera zoom in closest position
-								camMaxDis={-0.01} // max camera zoom in closest position
-								camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
-								camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
-								turnVelMultiplier={1} // Turning speed same as moving speed
-								turnSpeed={100} // give it big turning speed to prevent turning wait time
-								mode={"CameraBasedMovement"} // character's rotation will follow camera's rotation in this mode
-								jumpvel={1}
-								autoBalance={false}
-							>
-								
-							</Ecctrl> */}
 							<Ecctrl
 								camCollision={false} // disable camera collision detect (useless in FP mode)
 								camInitDis={-0.01} // camera intial position
@@ -62,7 +47,7 @@ function App() {
 								turnSpeed={100} // give it big turning speed to prevent turning wait time
 								autoBalance={false}
 								// debug
-								position={[-1.5, 1, 0.05]}
+								// position={[-1.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
 					</Physics>
