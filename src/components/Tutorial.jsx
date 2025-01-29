@@ -2,7 +2,7 @@ export default function Tutorial() {
 	return (
 		<div
 			style={{
-				color: "rgb(0, 0, 0, 0.85)",
+				color: "rgb(0, 0, 0, 0.8)",
 			}}
 		>
 			<div
