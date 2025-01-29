@@ -1,8 +1,8 @@
 import { RigidBody } from "@react-three/rapier";
-import Room from "../assets/models/Room";
-import Room2 from "../assets/models/Room2";
-import Room3 from "../assets/models/Room3";
-import Scaled from "../assets/models/Scaled";
+import Room from "../../assets/models/Room";
+import Room2 from "../../assets/models/Room2";
+import Room3 from "../../assets/models/Room3";
+import Scaled from "../../assets/models/Scaled";
 
 export default function Apartment() {
 	return (

@@ -1,14 +1,15 @@
+import { Suspense } from "react";
+
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Suspense } from "react";
 import { KeyboardControls, Loader } from "@react-three/drei";
 
-import { Experience } from "./components/Experience";
-import { Land } from "./components/Land";
-
 import Ecctrl from "ecctrl";
-import Tutorial from "./components/Tutorial";
-import Apartment from "./components/Apartment";
+
+import { Experience } from "./components/3d-components/Experience";
+import { Land } from "./components/3d-components/Land";
+import Apartment from "./components/3d-components/Apartment";
+import Tutorial from "./components/3d-components/Tutorial";
 
 function App() {
 	const keyboardMap = [
@@ -46,7 +47,6 @@ function App() {
 								autoBalance={false}
 								// debug
 								position={[-1.5, 1, 0.05]}
-								// position={[-0.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
 
