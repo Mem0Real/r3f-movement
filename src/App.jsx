@@ -7,6 +7,7 @@ import { KeyboardControls } from "@react-three/drei";
 
 import Ecctrl from "ecctrl";
 import Tutorial from "./components/Tutorial";
+import Apartment from "./components/Apartment";
 
 function App() {
 	const keyboardMap = [
@@ -29,10 +30,11 @@ function App() {
 				}}
 			>
 				<color attach="background" args={["#ececec"]} />
-				<Suspense>
+				<Suspense fallback={null}>
 					<Physics>
 						{/* <Experience /> */}
-						<Land />
+						{/* <Land /> */}
+						<Apartment />
 						<KeyboardControls map={keyboardMap}>
 							{/* <Ecctrl
 								camCollision={false} // disable camera collision detect (useless in FP mode)
@@ -59,6 +61,9 @@ function App() {
 								turnVelMultiplier={1} // Turning speed same as moving speed
 								turnSpeed={100} // give it big turning speed to prevent turning wait time
 								autoBalance={false}
+								// debug
+								// position={[-0.5, 1, 0]}
+								// rotation={[0, -Math.PI / 2, 0]}
 							/>
 						</KeyboardControls>
 					</Physics>

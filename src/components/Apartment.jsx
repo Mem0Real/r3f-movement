@@ -1,11 +1,14 @@
 import Room from "../assets/models/Room";
+import { RigidBody } from "@react-three/rapier";
 
-function Apartment() {
+export default function Apartment() {
 	return (
-		<RigidBody type="fixed" scale={0.01}>
-			<Room />
-		</RigidBody>
+		<>
+			<ambientLight intensity={0.5} />
+			<directionalLight position={[-10, 10, 0]} intensity={0.4} />
+			<RigidBody type="fixed" colliders="trimesh">
+				<Room />
+			</RigidBody>
+		</>
 	);
 }
-
-export default Apartment;
