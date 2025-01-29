@@ -11,9 +11,9 @@ export default function Apartment() {
 			<directionalLight position={[-10, 10, 0]} intensity={0.8} />
 			<RigidBody type="fixed" colliders="trimesh">
 				{/* <Room /> */}
-				{/* <Room2 /> */}
+				<Room2 />
 				{/* <Room3 /> */}
-				<Scaled />
+				{/* <Scaled /> */}
 			</RigidBody>
 		</>
 	);
