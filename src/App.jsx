@@ -47,8 +47,8 @@ function App() {
 								turnSpeed={100} // give it big turning speed to prevent turning wait time
 								autoBalance={false}
 								// debug
-								// position={[-1.5, 1, 0.05]}
-								position={[-0.5, 1, 0.05]}
+								position={[-1.5, 1, 0.05]}
+								// position={[-0.5, 1, 0.05]}
 							/>
 						</KeyboardControls>
 					</Physics>
