@@ -22,7 +22,7 @@ function App() {
 		<>
 			<Canvas
 				shadows
-				camera={{ position: [10, 10, 10], fov: 30 }}
+				camera={{ position: [10, 10, 10], fov: 75 }}
 				onPointerDown={(e) => {
 					if (e.pointerType === "mouse") {
 						e.target.requestPointerLock();
