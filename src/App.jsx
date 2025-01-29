@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { KeyboardControls } from "@react-three/drei";
 
 import Ecctrl from "ecctrl";
+import Tutorial from "./components/Tutorial";
 
 function App() {
 	const keyboardMap = [
@@ -18,7 +19,15 @@ function App() {
 	];
 	return (
 		<>
-			<Canvas shadows camera={{ position: [10, 10, 10], fov: 30 }}>
+			<Canvas
+				shadows
+				camera={{ position: [10, 10, 10], fov: 30 }}
+				onPointerDown={(e) => {
+					if (e.pointerType === "mouse") {
+						e.target.requestPointerLock();
+					}
+				}}
+			>
 				<color attach="background" args={["#ececec"]} />
 				<Suspense>
 					<Physics>
@@ -55,23 +64,7 @@ function App() {
 					</Physics>
 				</Suspense>
 			</Canvas>
-			<div style={{ color: "rgb(0, 0, 0, 0.85)" }}>
-				<div
-					style={{
-						position: "absolute",
-						top: "10px",
-						left: "10px",
-					}}
-				>
-					<h4>W - Forward</h4>
-					<h4>A - Left</h4>
-					<h4>S - Back</h4>
-					<h4>D - Right</h4>
-				</div>
-				<div style={{ position: "absolute", top: "10px", left: "10em" }}>
-					<h4>Click & Drag for camera</h4>
-				</div>
-			</div>
+			<Tutorial />
 		</>
 	);
 }
