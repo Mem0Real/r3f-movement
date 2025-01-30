@@ -33,7 +33,7 @@ export default function MyScene(props) {
 
 	useEffect(() => {
 		function isMobile() {
-			return window.matchMedia("(max-width: 1023)").matches;
+			return window.matchMedia("(max-width: 1023px)").matches;
 		}
 
 		const device = isMobile();
