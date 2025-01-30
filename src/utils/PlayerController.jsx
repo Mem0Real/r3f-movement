@@ -9,9 +9,11 @@ export default function PlayerController() {
 
 	const sound = useRef(null);
 	const lastLogTime = useRef(0);
+	const lastJumpTime = useRef(0);
 
 	const logDelay = 400;
 	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep5.mp3");
+	let jumped = false;
 
 	useEffect(() => {
 		const listener = new AudioListener();
@@ -33,8 +35,15 @@ export default function PlayerController() {
 		const { forward, backward, leftward, rightward, jump } = get();
 		const now = Date.now();
 
+		if (jump && !jumped) {
+			jumped = true;
+			setTimeout(() => {
+				jumped = false;
+			}, 700);
+		}
+
 		// Check if any movement key is pressed
-		if ((forward || backward || leftward || rightward) && !jump) {
+		if ((forward || backward || leftward || rightward) && !jumped) {
 			// Only log if more than 1 second has passed since last log
 			if (now - lastLogTime.current > logDelay) {
 				if (sound.current && !sound.current.isPlaying) {

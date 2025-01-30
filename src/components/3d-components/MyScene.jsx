@@ -75,8 +75,8 @@ export default function MyScene(props) {
 				<Suspense fallback={null}>
 					<Physics>
 						<RigidBody type="fixed" colliders="trimesh">
-							{/* <ambientLight intensity={0.5} /> */}
-							{/* <directionalLight position={[-10, 10, 0]} intensity={2} /> */}
+							<ambientLight intensity={1} />
+							<directionalLight position={[-10, 10, 0]} intensity={2} />
 							<Room2 onLoaded={() => setModelLoaded(true)} />
 						</RigidBody>
 
@@ -108,7 +108,7 @@ export default function MyScene(props) {
 				</Suspense>
 				<Environment
 					files="/assets/hdri/cloudy.exr"
-					background="true"
+					background="only"
 					environmentIntensity={0.5}
 				/>
 			</Canvas>
