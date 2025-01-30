@@ -19,7 +19,7 @@ export default function Tutorial({ closeTutorial }) {
 				<div className="self-start flex flex-col justify-between items-center gap-4">
 					<h1>For rotation, click once then move cursor</h1>
 					<h1>
-						To exit, press <b>"Esc"</b>
+						To exit fullscreen, press <b>"Esc"</b>
 					</h1>
 					<h1>
 						To leave the simulation, find the <b>"Exit"</b> button in the scene

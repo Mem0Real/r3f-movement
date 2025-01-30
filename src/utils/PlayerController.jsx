@@ -11,13 +11,13 @@ export default function PlayerController() {
 	const lastLogTime = useRef(0);
 
 	const logDelay = 400;
-	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep2.mp3");
+	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep5.mp3");
 
 	useEffect(() => {
 		const listener = new AudioListener();
 		const audio = new Audio(listener);
 		audio.setBuffer(stepSound);
-		audio.setVolume(0.2);
+		audio.setVolume(0.7);
 		audio.loop = true;
 		sound.current = audio;
 
