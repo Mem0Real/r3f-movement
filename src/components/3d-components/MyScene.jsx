@@ -36,7 +36,9 @@ export default function MyScene(props) {
 			return window.matchMedia("(max-width: 767px)").matches;
 		}
 
-		setIsMobile(() => isMobile());
+		const device = isMobile();
+
+		setIsMobile(() => device);
 	}, []);
 
 	const closeTutorial = () => showTutorial(!tutorial);
