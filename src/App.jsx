@@ -1,8 +1,13 @@
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
-import { Environment, KeyboardControls, Loader } from "@react-three/drei";
+import {
+	Environment,
+	KeyboardControls,
+	Loader,
+	useKeyboardControls,
+} from "@react-three/drei";
 
 import Ecctrl from "ecctrl";
 
@@ -11,16 +16,20 @@ import { Land } from "./components/3d-components/Land";
 import Apartment from "./components/3d-components/Apartment";
 import Tutorial from "./components/3d-components/Tutorial";
 import Room2 from "./assets/models/Room2";
+import PlayerController from "./utils/PlayerController";
 
 function App() {
-	const keyboardMap = [
-		{ name: "forward", keys: ["ArrowUp", "KeyW"] },
-		{ name: "backward", keys: ["ArrowDown", "KeyS"] },
-		{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-		{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
-		{ name: "jump", keys: ["Space"] },
-		{ name: "run", keys: ["Shift"] },
-	];
+	const keyboardMap = useMemo(
+		() => [
+			{ name: "forward", keys: ["ArrowUp", "KeyW"] },
+			{ name: "backward", keys: ["ArrowDown", "KeyS"] },
+			{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+			{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
+			{ name: "jump", keys: ["Space"] },
+			{ name: "run", keys: ["Shift"] },
+		],
+		[]
+	);
 	const [modelLoaded, setModelLoaded] = useState(false);
 
 	return (
@@ -57,6 +66,7 @@ function App() {
 									position={[-1.2, 1, 0.05]}
 									jumpVel={3}
 								/>
+								<PlayerController />
 							</KeyboardControls>
 						)}
 
