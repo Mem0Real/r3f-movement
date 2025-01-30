@@ -10,14 +10,15 @@ export default function PlayerController() {
 	const sound = useRef(null);
 	const lastLogTime = useRef(0);
 
-	const logDelay = 600;
-	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep.mp3");
+	const logDelay = 400;
+	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep2.mp3");
 
 	useEffect(() => {
 		const listener = new AudioListener();
 		const audio = new Audio(listener);
 		audio.setBuffer(stepSound);
-		audio.setVolume(0.5);
+		audio.setVolume(0.02);
+		audio.loop = true;
 		sound.current = audio;
 
 		const resumeAudio = async () => {

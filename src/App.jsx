@@ -1,90 +1,32 @@
-import { Suspense, useEffect, useMemo, useState } from "react";
+import "./index.css";
+import React, { useState } from "react";
+import MyScene from "./components/3d-components/MyScene";
+import Navbar from "./components/webpage-components/Navbar";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Physics, RigidBody } from "@react-three/rapier";
-import {
-	Environment,
-	KeyboardControls,
-	Loader,
-	useKeyboardControls,
-} from "@react-three/drei";
+const App = () => {
+	const [scene, showScene] = useState(false);
 
-import Ecctrl from "ecctrl";
-
-import { Experience } from "./components/3d-components/Experience";
-import { Land } from "./components/3d-components/Land";
-import Apartment from "./components/3d-components/Apartment";
-import Tutorial from "./components/3d-components/Tutorial";
-import Room2 from "./assets/models/Room2";
-import PlayerController from "./utils/PlayerController";
-
-function App() {
-	const keyboardMap = useMemo(
-		() => [
-			{ name: "forward", keys: ["ArrowUp", "KeyW"] },
-			{ name: "backward", keys: ["ArrowDown", "KeyS"] },
-			{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-			{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
-			{ name: "jump", keys: ["Space"] },
-			{ name: "run", keys: ["Shift"] },
-		],
-		[]
-	);
-	const [modelLoaded, setModelLoaded] = useState(false);
+	const toggleScene = () => {
+		showScene(!scene);
+	};
 
 	return (
-		<>
-			<Canvas
-				shadows
-				camera={{ position: [10, 10, 10], fov: 75 }}
-				onPointerDown={(e) => {
-					if (e.pointerType === "mouse") {
-						e.target.requestPointerLock();
-					}
-				}}
-			>
-				{/* <color attach="background" args={["#ececec"]} /> */}
-				<Suspense fallback={null}>
-					<Physics>
-						<RigidBody type="fixed" colliders="trimesh">
-							<Room2 onLoaded={() => setModelLoaded(true)} />
-						</RigidBody>
-
-						{modelLoaded && (
-							<KeyboardControls map={keyboardMap}>
-								<Ecctrl
-									camCollision={false} // disable camera collision detect (useless in FP mode)
-									camInitDis={-0.01} // camera intial position
-									camMinDis={-0.01} // camera zoom in closest position
-									camMaxDis={-0.01} // max camera zoom in closest position
-									camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
-									camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
-									turnVelMultiplier={1} // Turning speed same as moving speed
-									turnSpeed={100} // give it big turning speed to prevent turning wait time
-									autoBalance={false}
-									// debug
-									position={[-1.2, 1, 0.05]}
-									jumpVel={3}
-								/>
-								<PlayerController />
-							</KeyboardControls>
-						)}
-
-						{/* <Experience /> */}
-						{/* <Land /> */}
-						{/* <Apartment /> */}
-					</Physics>
-				</Suspense>
-				<Environment
-					files="/assets/hdri/cloudy.exr"
-					background="true"
-					environmentIntensity={0.5}
-				/>
-			</Canvas>
-			{modelLoaded && <Tutorial />}
-			<Loader />
-		</>
+		<div className="bg-black size-full min-h-screen flex flex-col items-center gap-5">
+			{scene ? (
+				<MyScene toggleScene={toggleScene} />
+			) : (
+				<>
+					<Navbar />
+					<button
+						className="px-3 py-2 bg-neutral-200 z-50 rounded-2xl cursor-pointer"
+						onClick={toggleScene}
+					>
+						Open Scene
+					</button>
+				</>
+			)}
+		</div>
 	);
-}
+};
 
 export default App;
