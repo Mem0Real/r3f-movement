@@ -13,6 +13,8 @@ import Tutorial from "./Tutorial";
 import Room2 from "../../assets/models/Room2";
 import PlayerController from "../../utils/PlayerController";
 
+import { MeshStandardMaterial } from "three";
+
 export default function MyScene(props) {
 	const keyboardMap = useMemo(
 		() => [
@@ -33,8 +35,14 @@ export default function MyScene(props) {
 	const { toggleScene } = props;
 
 	return (
-		<Suspense fallback={null}>
-			<EcctrlJoystick />
+		<Suspense
+			fallback={
+				<div className="w-full h-full flex justify-center items-center">
+					<h1 className="text-white text-xl italic">Loading...</h1>
+				</div>
+			}
+		>
+			<EcctrlJoystick joystickRunSensitivity={0.5} />
 			<Canvas
 				shadows
 				camera={{ position: [10, 10, 10], fov: 75 }}
