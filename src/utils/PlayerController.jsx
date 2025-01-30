@@ -17,7 +17,7 @@ export default function PlayerController() {
 		const listener = new AudioListener();
 		const audio = new Audio(listener);
 		audio.setBuffer(stepSound);
-		audio.setVolume(0.7);
+		audio.setVolume(0.4);
 		audio.loop = true;
 		sound.current = audio;
 
