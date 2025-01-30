@@ -29,7 +29,7 @@ export default function MyScene(props) {
 	);
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
-	const [isMobile, setIsMobile] = useState(false);
+	const [isMobile, setIsMobile] = useState(true);
 
 	useEffect(() => {
 		function isMobile() {
