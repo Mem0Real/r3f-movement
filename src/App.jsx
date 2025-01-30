@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { KeyboardControls, Loader } from "@react-three/drei";
+import { Environment, KeyboardControls, Loader } from "@react-three/drei";
 
 import Ecctrl from "ecctrl";
 
@@ -31,7 +31,7 @@ function App() {
 					}
 				}}
 			>
-				<color attach="background" args={["#ececec"]} />
+				{/* <color attach="background" args={["#ececec"]} /> */}
 				<Suspense fallback={null}>
 					<Physics>
 						<KeyboardControls map={keyboardMap}>
@@ -46,7 +46,7 @@ function App() {
 								turnSpeed={100} // give it big turning speed to prevent turning wait time
 								autoBalance={false}
 								// debug
-								position={[-1.5, 1, 0.05]}
+								position={[-1.5, 2, 0.05]}
 							/>
 						</KeyboardControls>
 
@@ -55,6 +55,11 @@ function App() {
 						<Apartment />
 					</Physics>
 				</Suspense>
+				<Environment
+					files="/assets/hdri/cloudy.exr"
+					background="true"
+					environmentIntensity={0.5}
+				/>
 			</Canvas>
 			<Tutorial />
 			<Loader />

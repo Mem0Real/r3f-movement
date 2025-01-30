@@ -7,7 +7,7 @@ import Scaled from "../../assets/models/Scaled";
 export default function Apartment() {
 	return (
 		<>
-			<ambientLight intensity={1} />
+			<ambientLight intensity={0.1} />
 			<directionalLight position={[-10, 10, 0]} intensity={0.8} />
 			<RigidBody type="fixed" colliders="trimesh">
 				{/* <Room /> */}
