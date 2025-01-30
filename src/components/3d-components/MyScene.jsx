@@ -42,7 +42,7 @@ export default function MyScene(props) {
 				</div>
 			}
 		>
-			<EcctrlJoystick joystickRunSensitivity={0.5} />
+			<EcctrlJoystick />
 			<Canvas
 				shadows
 				camera={{ position: [10, 10, 10], fov: 75 }}
@@ -84,6 +84,7 @@ export default function MyScene(props) {
 									// debug
 									position={[-1.2, 1, 0.05]}
 									jumpVel={3}
+									maxVelLimit={3}
 								/>
 								<PlayerController />
 							</KeyboardControls>
