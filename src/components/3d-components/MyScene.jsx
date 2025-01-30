@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
@@ -29,6 +29,15 @@ export default function MyScene(props) {
 	);
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		function isMobile() {
+			return window.matchMedia("(max-width: 767px)").matches;
+		}
+
+		setIsMobile(() => isMobile());
+	}, []);
 
 	const closeTutorial = () => showTutorial(!tutorial);
 
@@ -42,7 +51,7 @@ export default function MyScene(props) {
 				</div>
 			}
 		>
-			<EcctrlJoystick />
+			{isMobile && <EcctrlJoystick />}
 			<Canvas
 				shadows
 				camera={{ position: [10, 10, 10], fov: 75 }}
