@@ -30,11 +30,11 @@ export default function PlayerController() {
 	}, []);
 
 	useFrame(() => {
-		const { forward, backward, leftward, rightward } = get();
+		const { forward, backward, leftward, rightward, jump } = get();
 		const now = Date.now();
 
 		// Check if any movement key is pressed
-		if (forward || backward || leftward || rightward) {
+		if ((forward || backward || leftward || rightward) && !jump) {
 			// Only log if more than 1 second has passed since last log
 			if (now - lastLogTime.current > logDelay) {
 				if (sound.current && !sound.current.isPlaying) {
