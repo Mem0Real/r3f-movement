@@ -11,7 +11,10 @@ const Navbar = () => {
 		<nav className="border border-white rounded-lg w-[90%] mx-auto mt-5 text-white py-3">
 			<div className="flex justify-center items-center gap-6">
 				{links.map(({ title, url }) => (
-					<button className="hover:underline underline-offset-8  px-3 py-3 rounded cursor-pointer">
+					<button
+						key={title}
+						className="hover:underline underline-offset-8  px-3 py-3 rounded cursor-pointer"
+					>
 						{title}
 					</button>
 				))}

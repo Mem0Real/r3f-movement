@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Environment, Html, KeyboardControls, Loader } from "@react-three/drei";
 
-import Ecctrl from "ecctrl";
+import Ecctrl, { EcctrlJoystick } from "ecctrl";
 
 import { Experience } from "./Experience";
 import { Land } from "./Land";
@@ -34,6 +34,7 @@ export default function MyScene(props) {
 
 	return (
 		<Suspense fallback={null}>
+			<EcctrlJoystick />
 			<Canvas
 				shadows
 				camera={{ position: [10, 10, 10], fov: 75 }}
