@@ -11,7 +11,7 @@ export default function PlayerController() {
 	const lastLogTime = useRef(0);
 	const lastJumpTime = useRef(0);
 
-	const logDelay = 400;
+	const logDelay = 300;
 	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep5.mp3");
 	let jumped = false;
 

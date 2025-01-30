@@ -13,7 +13,7 @@ import Tutorial from "./Tutorial";
 import Room2 from "../../assets/models/Room2";
 import PlayerController from "../../utils/PlayerController";
 
-import { MeshStandardMaterial } from "three";
+import { DirectionalLightHelper, MeshStandardMaterial } from "three";
 
 export default function MyScene(props) {
 	const keyboardMap = useMemo(
@@ -95,7 +95,7 @@ export default function MyScene(props) {
 									// debug
 									position={[-1.2, 1, 0.05]}
 									jumpVel={3}
-									maxVelLimit={3}
+									maxVelLimit={1}
 								/>
 								<PlayerController />
 							</KeyboardControls>
