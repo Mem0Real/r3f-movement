@@ -4,10 +4,14 @@ Command: npx gltfjsx@6.5.3 ./public/assets/models/apart2/apartment.glb
 */
 
 import React, { useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useLoader } from "@react-three/fiber";
 
 export default function Room2(props) {
-	const { nodes, materials } = useGLTF("/assets/models/apart2/apartment.glb");
+	const { nodes, materials } = useLoader(
+		GLTFLoader,
+		"/assets/models/apart2/apartment.glb"
+	);
 	const { onLoaded } = props;
 
 	useEffect(() => {
@@ -142,4 +146,4 @@ export default function Room2(props) {
 	);
 }
 
-useGLTF.preload("/assets/models/apart2/apartment.glb");
+// useGLTF.preload("/assets/models/apart2/apartment.glb");

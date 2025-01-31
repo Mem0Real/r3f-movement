@@ -2,7 +2,14 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
-import { Environment, Html, KeyboardControls, Loader } from "@react-three/drei";
+import {
+	Environment,
+	Html,
+	KeyboardControls,
+	Loader,
+	OrbitControls,
+	PerformanceMonitor,
+} from "@react-three/drei";
 
 import Ecctrl, { EcctrlJoystick } from "ecctrl";
 
@@ -16,11 +23,13 @@ import AudioController from "../../utils/AudioController";
 import { DirectionalLightHelper, MeshStandardMaterial } from "three";
 import MyApartment from "./MyApartment";
 import PlayerController from "../../utils/PlayerController";
+import Lights from "./Lights";
 
 export default function MyScene(props) {
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
+	const [dpr, setDpr] = useState(1.5);
 
 	useEffect(() => {
 		function isMobile() {
@@ -54,7 +63,8 @@ export default function MyScene(props) {
 					}
 				}}
 			>
-				<Html position={[0, 2, 0]}>
+				<Lights />
+				<Html position={[0, 1.5, -0.25]}>
 					<button
 						className="px-3 py-1 bg-neutral-300/60 rounded cursor-pointer hover:px-4 hover:py-2"
 						onClick={toggleScene}
