@@ -1,72 +1,39 @@
-import { useEffect, useRef } from "react";
-
-import { useFrame, useLoader } from "@react-three/fiber";
-import { useKeyboardControls } from "@react-three/drei";
-import { Audio, AudioListener, AudioLoader } from "three";
+import { useMemo } from "react";
+import { KeyboardControls } from "@react-three/drei";
+import Ecctrl from "ecctrl";
+import AudioController from "./AudioController";
 
 export default function PlayerController() {
-	const [, get] = useKeyboardControls();
+	const keyboardMap = useMemo(
+		() => [
+			{ name: "forward", keys: ["ArrowUp", "KeyW"] },
+			{ name: "backward", keys: ["ArrowDown", "KeyS"] },
+			{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+			{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
+			{ name: "jump", keys: ["Space"] },
+			{ name: "run", keys: ["Shift"] },
+		],
+		[]
+	);
 
-	const sound = useRef(null);
-	const lastLogTime = useRef(0);
-	const lastJumpTime = useRef(0);
-
-	const logDelay = 300;
-	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep5.mp3");
-	let jumped = false;
-
-	useEffect(() => {
-		const listener = new AudioListener();
-		const audio = new Audio(listener);
-		audio.setBuffer(stepSound);
-		audio.setVolume(0.4);
-		audio.loop = true;
-		sound.current = audio;
-
-		const resumeAudio = async () => {
-			if (audio.context.state === "suspended") await audio.context.resume();
-		};
-
-		document.addEventListener("click", resumeAudio);
-		return () => document.removeEventListener("click", resumeAudio);
-	}, []);
-
-	useFrame(() => {
-		const { forward, backward, leftward, rightward, jump } = get();
-		const now = Date.now();
-
-		if (jump && !jumped) {
-			jumped = true;
-			setTimeout(() => {
-				jumped = false;
-			}, 700);
-		}
-
-		// Check if any movement key is pressed
-		if ((forward || backward || leftward || rightward) && !jumped) {
-			// Only log if more than 1 second has passed since last log
-			if (now - lastLogTime.current > logDelay) {
-				if (sound.current && !sound.current.isPlaying) {
-					sound.current.play();
-					lastLogTime.current = now;
-				}
-			}
-		} else {
-			if (sound.current?.isPlaying) {
-				sound.current.stop();
-			}
-		}
-	});
-
-	// Cleanup audio
-	useEffect(() => {
-		return () => {
-			if (sound.current) {
-				sound.current.stop();
-				sound.current.disconnect();
-			}
-		};
-	}, []);
-
-	return null;
+	return (
+		<KeyboardControls map={keyboardMap}>
+			<Ecctrl
+				camCollision={false} // disable camera collision detect (useless in FP mode)
+				camInitDis={-0.01} // camera intial position
+				camMinDis={-0.01} // camera zoom in closest position
+				camMaxDis={-0.01} // max camera zoom in closest position
+				camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
+				camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
+				turnVelMultiplier={1} // Turning speed same as moving speed
+				turnSpeed={100} // give it big turning speed to prevent turning wait time
+				autoBalance={false}
+				// debug
+				position={[-1.2, 1, 0.05]}
+				jumpVel={3}
+				maxVelLimit={1}
+			/>
+			<AudioController />
+		</KeyboardControls>
+	);
 }

@@ -11,22 +11,13 @@ import { Land } from "./Land";
 import Apartment from "./Apartment";
 import Tutorial from "./Tutorial";
 import Room2 from "../../assets/models/Room2";
-import PlayerController from "../../utils/PlayerController";
+import AudioController from "../../utils/AudioController";
 
 import { DirectionalLightHelper, MeshStandardMaterial } from "three";
+import MyApartment from "./MyApartment";
+import PlayerController from "../../utils/PlayerController";
 
 export default function MyScene(props) {
-	const keyboardMap = useMemo(
-		() => [
-			{ name: "forward", keys: ["ArrowUp", "KeyW"] },
-			{ name: "backward", keys: ["ArrowDown", "KeyS"] },
-			{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-			{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
-			{ name: "jump", keys: ["Space"] },
-			{ name: "run", keys: ["Shift"] },
-		],
-		[]
-	);
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
@@ -71,39 +62,11 @@ export default function MyScene(props) {
 						Exit
 					</button>
 				</Html>
-				{/* <color attach="background" args={["#ececec"]} /> */}
 				<Suspense fallback={null}>
 					<Physics>
-						<RigidBody type="fixed" colliders="trimesh">
-							<ambientLight intensity={1} />
-							<directionalLight position={[-10, 10, 0]} intensity={2} />
-							<Room2 onLoaded={() => setModelLoaded(true)} />
-						</RigidBody>
+						<MyApartment onLoaded={() => setModelLoaded(true)} />
 
-						{modelLoaded && (
-							<KeyboardControls map={keyboardMap}>
-								<Ecctrl
-									camCollision={false} // disable camera collision detect (useless in FP mode)
-									camInitDis={-0.01} // camera intial position
-									camMinDis={-0.01} // camera zoom in closest position
-									camMaxDis={-0.01} // max camera zoom in closest position
-									camFollowMult={1000} // give a big number here, so the camera follows the target (character) instantly
-									camLerpMult={1000} // give a big number here, so the camera lerp to the followCam position instantly
-									turnVelMultiplier={1} // Turning speed same as moving speed
-									turnSpeed={100} // give it big turning speed to prevent turning wait time
-									autoBalance={false}
-									// debug
-									position={[-1.2, 1, 0.05]}
-									jumpVel={3}
-									maxVelLimit={1}
-								/>
-								<PlayerController />
-							</KeyboardControls>
-						)}
-
-						{/* <Experience /> */}
-						{/* <Land /> */}
-						{/* <Apartment /> */}
+						{modelLoaded && <PlayerController />}
 					</Physics>
 				</Suspense>
 				<Environment
