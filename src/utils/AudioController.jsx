@@ -11,8 +11,9 @@ export default function AudioController() {
 	const lastLogTime = useRef(0);
 	const lastJumpTime = useRef(0);
 
-	const logDelay = 300;
 	const stepSound = useLoader(AudioLoader, "/assets/audio/footstep5.mp3");
+	const logDelay = 300;
+
 	let jumped = false;
 
 	useEffect(() => {

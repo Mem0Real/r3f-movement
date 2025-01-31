@@ -64,14 +64,16 @@ export default function MyScene(props) {
 				}}
 			>
 				<Lights />
-				<Html position={[0, 1.5, -0.25]}>
-					<button
-						className="px-3 py-1 bg-neutral-300/60 rounded cursor-pointer hover:px-4 hover:py-2"
-						onClick={toggleScene}
-					>
-						Exit
-					</button>
-				</Html>
+				{modelLoaded && (
+					<Html position={[0, 1.5, -0.25]}>
+						<button
+							className="px-3 py-1 bg-neutral-300/60 rounded cursor-pointer hover:px-4 hover:py-2"
+							onClick={toggleScene}
+						>
+							Exit
+						</button>
+					</Html>
+				)}
 				<Suspense fallback={null}>
 					<Physics>
 						<MyApartment onLoaded={() => setModelLoaded(true)} />
