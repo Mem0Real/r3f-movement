@@ -43,7 +43,7 @@ export function ModernB(props) {
 	const groupRef = useRef();
 	const controlsRef = useRef();
 
-	const { setModel, setOverlayOpacity } = useZus();
+	const { model, setModel, setOverlayOpacity } = useZus();
 
 	// Animation logic
 	useFrame((_, delta) => {
@@ -74,8 +74,9 @@ export function ModernB(props) {
 		// 	setSecond(true);
 		// }
 		if (newProgress >= 1) {
+			let mod = model === "A" ? "B" : "A";
 			// Animation complete - add your model swap logic here
-			setModel((prev) => (prev === "A" ? "B" : "A"));
+			setModel(mod);
 			setOverlayOpacity(0);
 		}
 	});

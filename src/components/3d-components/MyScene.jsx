@@ -31,7 +31,6 @@ export default function MyScene(props) {
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
-	const [dpr, setDpr] = useState(1.5);
 
 	const { overlayOpacity, model } = useZus();
 

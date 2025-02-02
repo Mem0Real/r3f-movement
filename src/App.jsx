@@ -1,14 +1,22 @@
 import "./index.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyScene from "./components/3d-components/MyScene";
 import Navbar from "./components/webpage-components/Navbar";
+import { useZus } from "./utils/store";
 
 const App = () => {
 	const [scene, showScene] = useState(false);
 
+	const { model, setModel } = useZus();
+
 	const toggleScene = () => {
 		showScene(!scene);
+		model === "B" && setModel("A");
 	};
+
+	useEffect(() => {
+		console.log(model);
+	}, [model]);
 
 	return (
 		<div className="bg-black size-full min-h-screen flex flex-col items-center gap-5">
