@@ -9,14 +9,10 @@ const App = () => {
 
 	const { model, setModel } = useZus();
 
-	const toggleScene = () => {
+	const toggleScene = (e) => {
 		showScene(!scene);
 		model === "B" && setModel("A");
 	};
-
-	useEffect(() => {
-		console.log(model);
-	}, [model]);
 
 	return (
 		<div className="bg-black size-full min-h-screen flex flex-col items-center gap-5">
