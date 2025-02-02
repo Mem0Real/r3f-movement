@@ -24,12 +24,16 @@ import { DirectionalLightHelper, MeshStandardMaterial } from "three";
 import MyApartment from "./MyApartment";
 import PlayerController from "../../utils/PlayerController";
 import Lights from "./Lights";
+import { useZus } from "../../utils/store";
+import { ZoomExperience } from "./ZoomExperience";
 
 export default function MyScene(props) {
 	const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
 	const [dpr, setDpr] = useState(1.5);
+
+	const { overlayOpacity, model } = useZus();
 
 	useEffect(() => {
 		function isMobile() {
@@ -53,10 +57,14 @@ export default function MyScene(props) {
 				</div>
 			}
 		>
+			{/* <div
+				className="w-screen h-screen bg-white absolute top-0 left-0 z-50 pointer-events-none"
+				style={{ opacity: overlayOpacity }}
+			/> */}
 			{isMobile && <EcctrlJoystick />}
 			<Canvas
 				shadows
-				camera={{ position: [10, 10, 10], fov: 75 }}
+				camera={{ position: [0, 3.5, 12], fov: 45 }}
 				onPointerDown={(e) => {
 					if (e.pointerType === "mouse") {
 						e.target.requestPointerLock();
@@ -74,13 +82,17 @@ export default function MyScene(props) {
 						</button>
 					</Html>
 				)}
-				<Suspense fallback={null}>
-					<Physics>
-						<MyApartment onLoaded={() => setModelLoaded(true)} />
+				{model === "A" ? (
+					<ZoomExperience />
+				) : (
+					<Suspense fallback={null}>
+						<Physics>
+							<MyApartment onLoaded={() => setModelLoaded(true)} />
 
-						{modelLoaded && <PlayerController />}
-					</Physics>
-				</Suspense>
+							{modelLoaded && <PlayerController />}
+						</Physics>
+					</Suspense>
+				)}
 				<Environment
 					files="/assets/hdri/cloudy.exr"
 					background="only"

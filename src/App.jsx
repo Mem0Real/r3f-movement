@@ -1,32 +1,24 @@
-import "./index.css";
-import React, { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { ZoomExperience } from "./components/3d-components/ZoomExperience";
+import { GizmoHelper, GizmoViewport } from "@react-three/drei";
+import { useZus } from "./utils/store";
 import MyScene from "./components/3d-components/MyScene";
-import Navbar from "./components/webpage-components/Navbar";
 
-const App = () => {
-	const [scene, showScene] = useState(false);
-
-	const toggleScene = () => {
-		showScene(!scene);
-	};
-
+function App() {
+	const { overlayOpacity, model } = useZus();
 	return (
-		<div className="bg-black size-full min-h-screen flex flex-col items-center gap-5">
-			{scene ? (
-				<MyScene toggleScene={toggleScene} />
-			) : (
-				<>
-					<Navbar />
-					<button
-						className="px-3 py-2 bg-neutral-200 z-50 rounded-2xl cursor-pointer"
-						onClick={toggleScene}
-					>
-						Open Scene
-					</button>
-				</>
-			)}
-		</div>
+		// <>
+		// 	<div
+		// 		className="w-screen h-screen bg-white absolute top-0 left-0 z-50 pointer-events-none"
+		// 		style={{ opacity: overlayOpacity }}
+		// 	/>
+		// 	<Canvas shadows camera={{ position: [0, 3.5, 12], fov: 45 }}>
+		// 		<color attach="background" args={["#333"]} />
+		// 		{model === "A" ? <ZoomExperience /> : <MyScene />}
+		// 	</Canvas>
+		// </>
+		<MyScene />
 	);
-};
+}
 
 export default App;
