@@ -1,4 +1,11 @@
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import {
+	Suspense,
+	useEffect,
+	useRef,
+	useState,
+	createContext,
+	useContext,
+} from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
@@ -12,6 +19,8 @@ import PlayerController from "../../utils/PlayerController";
 import Lights from "./Lights";
 import { useZus } from "../../utils/store";
 import { ZoomExperience } from "./ZoomExperience";
+
+export const RefContext = createContext();
 
 export default function MyScene(props) {
 	// const [modelLoaded, setModelLoaded] = useState(false);
@@ -60,8 +69,8 @@ export default function MyScene(props) {
 					</Html>
 				)}
 				{model === "A" ? (
-					<group>
-						<ZoomExperience canvasRef={canvasRef} />
+					<RefContext.Provider value={canvasRef}>
+						<ZoomExperience />
 						<Html position={[0, -2, -0.25]}>
 							<button
 								className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded cursor-pointer hover:outline-4 font-bold"
@@ -70,7 +79,7 @@ export default function MyScene(props) {
 								Back
 							</button>
 						</Html>
-					</group>
+					</RefContext.Provider>
 				) : (
 					<Suspense fallback={null}>
 						<Physics>

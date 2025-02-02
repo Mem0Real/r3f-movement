@@ -8,11 +8,12 @@ Source: https://sketchfab.com/3d-models/residential-complex-modern-apartment-bui
 Title: residential complex modern apartment building
 */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { useZus } from "../../utils/store";
+import { RefContext } from "../../components/3d-components/MyScene";
 
 // Add these constants at the top to control the behavior
 const STOP_DISTANCE = 1; // Units to stop before the surface
@@ -36,15 +37,14 @@ export function ModernB(props) {
 	});
 	const [target, setTarget] = useState(null);
 	const [progress, setProgress] = useState(0);
-	const [second, setSecond] = useState(false);
-
-	const { camera, gl } = useThree();
 
 	const groupRef = useRef();
 	const controlsRef = useRef();
-	const { canvasRef } = props;
 
 	const { model, setModel, setOverlayOpacity } = useZus();
+	const canvasRef = useContext(RefContext);
+
+	const { camera } = useThree();
 
 	// Animation logic
 	useFrame((_, delta) => {
@@ -69,11 +69,6 @@ export function ModernB(props) {
 
 		setProgress(newProgress);
 
-		// if (newProgress == 1) {
-		// 	camera.position.set(10, 10, 10);
-		// 	camera.fov.set(75);
-		// 	setSecond(true);
-		// }
 		if (newProgress >= 1) {
 			let mod = model === "A" ? "B" : "A";
 			// Animation complete - add your model swap logic here
