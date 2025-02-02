@@ -105,11 +105,11 @@ export function ModernB(props) {
 	return (
 		<>
 			<OrbitControls
-				// autoRotate={!hovered}
+				autoRotate={!hovered}
 				enablePan={false}
 				enableRotate={false}
 				enableDamping={false}
-				target={second && [0, 2, 0]}
+				target={!second ? [0, 2, 0] : [0, 0, 0]}
 				ref={controlsRef}
 				enabled={!animation.active} // Disable during animation
 			/>

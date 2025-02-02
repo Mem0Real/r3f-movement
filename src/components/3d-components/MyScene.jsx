@@ -50,17 +50,11 @@ export default function MyScene(props) {
 	const { toggleScene } = props;
 
 	return (
-		<Suspense
-			fallback={
-				<div className="w-full h-full flex justify-center items-center">
-					<h1 className="text-white text-xl italic">Loading...</h1>
-				</div>
-			}
-		>
-			{/* <div
+		<>
+			<div
 				className="w-screen h-screen bg-white absolute top-0 left-0 z-50 pointer-events-none"
 				style={{ opacity: overlayOpacity }}
-			/> */}
+			/>
 			{isMobile && <EcctrlJoystick />}
 			<Canvas
 				shadows
@@ -101,6 +95,6 @@ export default function MyScene(props) {
 			</Canvas>
 			{modelLoaded && tutorial && <Tutorial closeTutorial={closeTutorial} />}
 			<Loader />
-		</Suspense>
+		</>
 	);
 }
