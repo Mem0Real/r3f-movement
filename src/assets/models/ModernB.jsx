@@ -77,7 +77,7 @@ export function ModernB(props) {
 			let mod = model === "A" ? "B" : "A";
 			// Animation complete - add your model swap logic here
 			setModel(mod);
-			setOverlayOpacity(0);
+			setTimeout(() => setOverlayOpacity(0), 2000);
 		}
 	});
 
