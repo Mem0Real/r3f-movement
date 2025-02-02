@@ -6,17 +6,18 @@ Files: public/assets/models/apart2/apartment.glb [12.16MB] > /home/mem0real/Desk
 
 import React, { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useZus } from "../../utils/store";
 
 export function Room4(props) {
 	const { nodes, materials } = useGLTF(
 		"/assets/models/apartment-transformed.glb"
 	);
 
-	const { onLoaded } = props;
+	const { toggleModelLoaded } = useZus();
 
 	useEffect(() => {
-		onLoaded();
-	}, [onLoaded]);
+		toggleModelLoaded();
+	}, []);
 
 	return (
 		<group {...props} dispose={null}>

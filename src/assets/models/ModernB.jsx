@@ -42,6 +42,7 @@ export function ModernB(props) {
 
 	const groupRef = useRef();
 	const controlsRef = useRef();
+	const { canvasRef } = props;
 
 	const { model, setModel, setOverlayOpacity } = useZus();
 
@@ -102,6 +103,8 @@ export function ModernB(props) {
 			controlsStart: controlsRef.current.target.clone(),
 		});
 		setProgress(0);
+
+		canvasRef.current.requestPointerLock();
 	};
 	return (
 		<>
@@ -110,6 +113,7 @@ export function ModernB(props) {
 				enablePan={false}
 				enableRotate={false}
 				enableDamping={false}
+				enableZoom={false}
 				target={!second ? [0, 2, 0] : [0, 0, 0]}
 				ref={controlsRef}
 				enabled={!animation.active} // Disable during animation

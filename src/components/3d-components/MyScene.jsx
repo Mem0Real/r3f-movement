@@ -1,26 +1,12 @@
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 
 import { Canvas } from "@react-three/fiber";
-import { Physics, RigidBody } from "@react-three/rapier";
-import {
-	Environment,
-	Html,
-	KeyboardControls,
-	Loader,
-	OrbitControls,
-	PerformanceMonitor,
-} from "@react-three/drei";
+import { Physics } from "@react-three/rapier";
+import { Environment, Html, Loader } from "@react-three/drei";
 
-import Ecctrl, { EcctrlJoystick } from "ecctrl";
-
-import { Experience } from "./Experience";
-import { Land } from "./Land";
-import Apartment from "./Apartment";
+import { EcctrlJoystick } from "ecctrl";
 import Tutorial from "./Tutorial";
-import Room2 from "../../assets/models/Room2";
-import AudioController from "../../utils/AudioController";
 
-import { DirectionalLightHelper, MeshStandardMaterial } from "three";
 import MyApartment from "./MyApartment";
 import PlayerController from "../../utils/PlayerController";
 import Lights from "./Lights";
@@ -28,11 +14,13 @@ import { useZus } from "../../utils/store";
 import { ZoomExperience } from "./ZoomExperience";
 
 export default function MyScene(props) {
-	const [modelLoaded, setModelLoaded] = useState(false);
+	// const [modelLoaded, setModelLoaded] = useState(false);
 	const [tutorial, showTutorial] = useState(true);
 	const [isMobile, setIsMobile] = useState(false);
 
-	const { overlayOpacity, model } = useZus();
+	const canvasRef = useRef();
+
+	const { overlayOpacity, model, modelLoaded } = useZus();
 
 	useEffect(() => {
 		function isMobile() {
@@ -58,17 +46,13 @@ export default function MyScene(props) {
 			<Canvas
 				shadows
 				camera={{ position: [0, 3.5, 12], fov: 45 }}
-				onPointerDown={(e) => {
-					if (e.pointerType === "mouse") {
-						e.target.requestPointerLock();
-					}
-				}}
+				ref={canvasRef}
 			>
 				<Lights />
 				{modelLoaded && (
 					<Html position={[0, 1.5, -0.25]}>
 						<button
-							className="px-3 py-1 bg-neutral-300/60 rounded cursor-pointer hover:px-4 hover:py-2"
+							className="px-4 py-2 bg-neutral-300 rounded cursor-pointer hover:outline-4 outline-black font-bold"
 							onClick={toggleScene}
 						>
 							Exit
@@ -76,11 +60,21 @@ export default function MyScene(props) {
 					</Html>
 				)}
 				{model === "A" ? (
-					<ZoomExperience />
+					<group>
+						<ZoomExperience canvasRef={canvasRef} />
+						<Html position={[0, -2, -0.25]}>
+							<button
+								className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded cursor-pointer hover:outline-4 font-bold"
+								onClick={toggleScene}
+							>
+								Back
+							</button>
+						</Html>
+					</group>
 				) : (
 					<Suspense fallback={null}>
 						<Physics>
-							<MyApartment onLoaded={() => setModelLoaded(true)} />
+							<MyApartment />
 
 							{modelLoaded && <PlayerController />}
 						</Physics>
