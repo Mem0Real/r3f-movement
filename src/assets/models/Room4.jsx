@@ -4,9 +4,10 @@ Command: npx gltfjsx@6.5.3 public/assets/models/apart2/apartment.glb -T
 Files: public/assets/models/apart2/apartment.glb [12.16MB] > /home/mem0real/Desktop/coding/react-three-fiber-projects/r3f-movement/apartment-transformed.glb [1.17MB] (90%)
 */
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useZus } from "../../utils/store";
+import { RefContext } from "../../components/3d-components/MyScene";
 
 export function Room4(props) {
 	const { nodes, materials } = useGLTF(
@@ -14,13 +15,24 @@ export function Room4(props) {
 	);
 
 	const { toggleModelLoaded } = useZus();
+	const canvasRef = useContext(RefContext);
 
 	useEffect(() => {
 		toggleModelLoaded();
 	}, []);
 
+	const handleClick = async () => {
+		const canvas = canvasRef?.current;
+
+		if (!canvas.pointerLockElement)
+			setTimeout(async () => await canvas.requestPointerLock(), 500);
+
+		canvas.addEventListener("pointerlockerror", () => {
+			console.log("pointer lock error");
+		});
+	};
 	return (
-		<group {...props} dispose={null}>
+		<group {...props} dispose={null} onClick={handleClick}>
 			<mesh
 				geometry={nodes.Body001_blinn4001_0.geometry}
 				material={materials["blinn4.001"]}

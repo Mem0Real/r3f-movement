@@ -68,27 +68,29 @@ export default function MyScene(props) {
 						</button>
 					</Html>
 				)}
-				{model === "A" ? (
-					<RefContext.Provider value={canvasRef}>
-						<ZoomExperience />
-						<Html position={[0, -2, -0.25]}>
-							<button
-								className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded cursor-pointer hover:outline-4 font-bold"
-								onClick={toggleScene}
-							>
-								Back
-							</button>
-						</Html>
-					</RefContext.Provider>
-				) : (
-					<Suspense fallback={null}>
-						<Physics>
-							<MyApartment />
+				<RefContext.Provider value={canvasRef}>
+					{model === "A" ? (
+						<group>
+							<ZoomExperience />
+							<Html position={[0, -2, -0.25]}>
+								<button
+									className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded cursor-pointer hover:outline-4 font-bold"
+									onClick={toggleScene}
+								>
+									Back
+								</button>
+							</Html>
+						</group>
+					) : (
+						<Suspense fallback={null}>
+							<Physics>
+								<MyApartment />
 
-							{modelLoaded && <PlayerController />}
-						</Physics>
-					</Suspense>
-				)}
+								{modelLoaded && <PlayerController />}
+							</Physics>
+						</Suspense>
+					)}
+				</RefContext.Provider>
 				<Environment
 					files="/assets/hdri/cloudy.exr"
 					background="only"

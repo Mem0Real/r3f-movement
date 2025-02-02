@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import MyScene from "./components/3d-components/MyScene";
 import Navbar from "./components/webpage-components/Navbar";
 import { useZus } from "./utils/store";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 const App = () => {
 	const [scene, showScene] = useState(false);
@@ -27,6 +29,25 @@ const App = () => {
 					>
 						Open Scene
 					</button>
+					<div className="h-[90%] w-full">
+						<Canvas shadows camera={{ position: [0, 1, -3], fov: 50 }}>
+							<OrbitControls />
+							<ambientLight intensity={1} />
+							<directionalLight intensity={0.4} />
+							<mesh position={[-2, 0, 0.5]}>
+								<boxGeometry />
+								<meshStandardMaterial color={"lightblue"} />
+							</mesh>
+							<mesh>
+								<boxGeometry />
+								<meshStandardMaterial color={"lightblue"} />
+							</mesh>
+							<mesh position={[2, 0, 0.5]}>
+								<boxGeometry />
+								<meshStandardMaterial color={"lightblue"} />
+							</mesh>
+						</Canvas>
+					</div>
 				</>
 			)}
 		</div>

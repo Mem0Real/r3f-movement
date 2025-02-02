@@ -99,8 +99,10 @@ export function ModernB(props) {
 		});
 		setProgress(0);
 
+		// Lock mouse movement when clicked
 		canvasRef.current.requestPointerLock();
 	};
+
 	return (
 		<>
 			<OrbitControls
@@ -109,7 +111,7 @@ export function ModernB(props) {
 				enableRotate={false}
 				enableDamping={false}
 				enableZoom={false}
-				target={!second ? [0, 2, 0] : [0, 0, 0]}
+				target={[0, 2, 0]}
 				ref={controlsRef}
 				enabled={!animation.active} // Disable during animation
 			/>
