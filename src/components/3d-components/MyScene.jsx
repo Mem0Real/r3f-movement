@@ -9,7 +9,7 @@ import {
 
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import { Environment, Html, Loader } from "@react-three/drei";
+import { Environment, Html, Loader, Preload } from "@react-three/drei";
 
 import { EcctrlJoystick } from "ecctrl";
 import Tutorial from "./Tutorial";
@@ -96,6 +96,7 @@ export default function MyScene(props) {
 					background="only"
 					environmentIntensity={0.5}
 				/>
+				<Preload all />
 			</Canvas>
 			{modelLoaded && tutorial && <Tutorial closeTutorial={closeTutorial} />}
 			<Loader />
