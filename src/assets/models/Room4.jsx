@@ -26,10 +26,6 @@ export function Room4(props) {
 
 		if (!canvas.pointerLockElement)
 			setTimeout(async () => await canvas.requestPointerLock(), 500);
-
-		canvas.addEventListener("pointerlockerror", () => {
-			console.log("pointer lock error");
-		});
 	};
 	return (
 		<group {...props} dispose={null} onClick={handleClick}>
