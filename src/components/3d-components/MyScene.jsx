@@ -68,6 +68,11 @@ export default function MyScene(props) {
 						</button>
 					</Html>
 				)}
+				<Html position={[2, 6, 0]}>
+					<div className="bg-neutral-700/80 text-neutral-200 w-[15em] px-8 py-3 rounded-lg">
+						<h1>Click on the building to enter 1st person VR</h1>
+					</div>
+				</Html>
 				<RefContext.Provider value={canvasRef}>
 					{model === "A" ? (
 						<group>
